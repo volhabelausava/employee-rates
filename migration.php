@@ -1,9 +1,14 @@
 <?php
-include __DIR__ . '/Component/Db.php';
+
+use App\Component\Db;
+use App\Exception\FileNotFoundException;
+use App\Exception\QueryNotPerformedException;
+
+require __DIR__ . '/autoload.php';
 
 try {
-    $db = new \App\Component\Db();
-} catch (\App\Exception\FileNotFoundException $error) {
+    $db = new Db();
+} catch (FileNotFoundException $error) {
     echo $error->getMessage();
 } catch (\Exception $error) {
     echo $error->getMessage();
@@ -22,6 +27,6 @@ $sql = 'CREATE TABLE employees (
         )';
 try {
     $db->perform($sql);
-} catch (\App\Exception\QueryNotPerformedException $error) {
+} catch (QueryNotPerformedException $error) {
     echo $error->getMessage();
 }

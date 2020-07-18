@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Component;
-include __DIR__ . '/../Exception/FileNotFoundException.php';
-include __DIR__ . '/../Exception/QueryNotPerformedException.php';
+
 use App\Exception\FileNotFoundException;
 use App\Exception\QueryNotPerformedException;
 
@@ -16,9 +15,9 @@ class Db
      */
     public function __construct()
     {
-        $configFile = __DIR__ . '/../config.php';
+        $configFile = __DIR__ . '/../../config.php';
         if (file_exists($configFile)) {
-            $config = include $configFile;
+            $config = require $configFile;
         } else {
             throw new FileNotFoundException('Database configuration file is not found.');
         }

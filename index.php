@@ -1,9 +1,13 @@
 <?php
-include __DIR__ . '/Component/Db.php';
+
+use App\Component\Db;
+use \App\Exception\FileNotFoundException;
+
+require __DIR__ . '/autoload.php';
 
 try {
-    $db = new \App\Component\Db();
-} catch (\App\Exception\FileNotFoundException $error) {
+    $db = new Db();
+} catch (FileNotFoundException $error) {
     echo $error->getMessage();
 } catch (\Exception $error) {
     echo $error->getMessage();
