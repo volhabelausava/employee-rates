@@ -6,7 +6,8 @@ try {
 } catch (\App\Exception\FileNotFoundException $error) {
     echo $error->getMessage();
 } catch (\Exception $error) {
-    $error->getMessage();
+    echo $error->getMessage();
 }
 
-echo "Welcome to Front Controller";
+echo "Welcome to Front Controller!";
+
