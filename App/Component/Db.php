@@ -34,6 +34,7 @@ class Db
     }
 
     /**
+     * Method performs SQL-execute query with binding parameters to it.
      * @param string $sql
      * @param array $params
      * @throws QueryNotPerformedException
@@ -44,5 +45,23 @@ class Db
         if (!$sth->execute($params)) {
             throw new QueryNotPerformedException('Error occurred while executing SQL query.');
         }
+    }
+
+    /**
+     * Method performs SQL query with binding parameters to it and returns queried data.
+     * @param string $sql
+     * @param array $params
+     * @return array
+     * @throws QueryNotPerformedException
+     */
+    public function query(string $sql, array $params = [])
+    {
+        $sth = $this->dbHandler->prepare($sql);
+        if (!$sth->execute($params)) {
+            throw new QueryNotPerformedException('Error occurred while executing SQL query.');
+        }
+        $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }
