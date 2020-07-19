@@ -1,6 +1,6 @@
 <?php
 return [
-    'host' => 'employee-rates-mysql',
+    'host' => 'localhost',
     'dbname' => 'employee-rates',
     'user' => 'root',
     'password' => '1111'
